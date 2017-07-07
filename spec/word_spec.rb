@@ -1,5 +1,6 @@
 require('rspec')
   require('word')
+  require('definition')
 
   describe('Word') do
     before() do
@@ -10,6 +11,13 @@ require('rspec')
      it("returns the inputted word") do
        test_word = Word.new({:word=> "Cow"})
        expect(test_word.word()).to(eq("Cow"))
+     end
+   end
+
+   describe("#meanings") do
+     it("initially returns an empty array of definitions for the words") do
+       test_word = Word.new({:word=> "Cow"})
+       expect(test_word.meanings()).to(eq([]))
      end
    end
 
@@ -44,5 +52,14 @@ require('rspec')
       expect(Word.find(test_word.id())).to(eq(test_word))
     end
   end
+
+  describe('#add_definition') do
+     it("adds a new definition to a word") do
+       test_word = Word.new({:word=> "Cow"})
+       test_definition = Definition.new("a fully grown female animal of a domesticated breed of ox, used as a source of milk or beef")
+       test_word.add_definition(test_definition)
+       expect(test_word.meanings()).to(eq([test_definition]))
+     end
+   end
 
   end
