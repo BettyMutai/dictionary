@@ -6,6 +6,15 @@ class Word
   define_method(:initialize) do |attributes|
     @word = attributes.fetch(:word)
     @id = @@all_words.length().+(1)
+    @meanings = []
+  end
+
+  define_method(:meanings) do
+    @meanings
+  end
+
+  define_method(:add_definition) do |definition|
+    @meanings.push(definition)
   end
 
   define_method(:id) do
