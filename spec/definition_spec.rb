@@ -34,4 +34,14 @@ require('rspec')
         expect(Definition.all()).to(eq([]))
       end
     end
+
+    describe(".find") do
+     it("returns a definition by its id number") do
+       test_definition = Definition.new("a fully grown female animal of a domesticated breed of ox, used as a source of milk or beef.")
+       test_definition.save()
+       test_definition2 = Definition.new("the round fruit of a tree of the rose family, which typically has thin red or green skin and crisp flesh")
+       test_definition2.save()
+       expect(Definition.find(test_definition.id())).to(eq(test_definition))
+     end
+   end
   end
