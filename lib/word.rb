@@ -26,7 +26,7 @@ class Word
 
   define_singleton_method(:find) do |identification|
     found_word = nil
-    @@words.each() do |word|
+    @@all_words.each() do |word|
       if word.id().eql?(identification.to_i())
         found_word = word
       end
