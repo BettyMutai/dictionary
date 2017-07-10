@@ -25,7 +25,7 @@ require('sinatra')
   end
 
   get('/definitions/:id') do
-    @definition = Vehicle.find(params.fetch('id').to_i())
+    @definition = Definition.find(params.fetch('id').to_i())
     erb(:definition)
   end
 
