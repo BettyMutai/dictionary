@@ -5,23 +5,15 @@ require('sinatra')
   require('./lib/definition')
 
   get('/') do
-    erb(:index)
-  end
-
-  get('/words/new') do
-    erb(:words_form)
-  end
-
-  get('/words') do
     @words = Word.all()
-    erb(:words)
+    erb(:index)
   end
 
   post('/words') do
     word = params.fetch('word')
     @word= Word.new({:word=> word})
     @word.save()
-    erb(:success)
+    redirect('/')
   end
 
   get('/definitions/:id') do
@@ -36,7 +28,7 @@ require('sinatra')
 
   get('/words/:id/definitions/new') do
       @word = Word.find(params.fetch('id').to_i())
-      erb(:definitions_form)
+      erb(:word)
   end
 
   post('/definitions') do
@@ -45,5 +37,5 @@ require('sinatra')
    @definition.save()
    @word = Word.find(params.fetch('word_id').to_i())
    @word.add_definition(@definition)
-   erb(:success)
+   erb(:word)
  end

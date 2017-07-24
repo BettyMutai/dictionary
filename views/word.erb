@@ -1,10 +1,20 @@
-<h3>Here are all the definitions of this word:</h3>
+<div class="container">
+
+<h4>Here are all the definitions of this word:</h4>
 
   <ul>
     <% @word.meanings().each() do |meaning| %>
-      <li><a href="/definitions/<%= meaning.id() %>"><%= meaning.definition() %></a></li>
+      <li><%= meaning.definition() %></li>
     <% end %>
   </ul>
 
-  <a href="/words/<%= @word.id%>/definitions/new">Add a new definition</a>
-  <a href="/">Return to Main Page</a>
+  <h4>Add A Definition</h4>
+  <form action="/definitions" method="post">
+    <input id='word_id' name='word_id' type='hidden' value='<%= @word.id() %>'>
+
+    <label for="definition">Word's Definition:</label>
+    <input id="definition" type="text" name="definition">
+
+    <button type="submit" name="btn btn-success">Add Definition</button>
+  </form>
+</div>

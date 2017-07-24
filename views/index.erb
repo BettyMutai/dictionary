@@ -1,3 +1,19 @@
-<h4>Coolest Dictonary You Can Find</h4>
-<a href="/words">See Words</a>
-<a href="/words/new">Add a new Word</a>
+<div class="container">
+  <h3>Add a word</h3>
+  <form action="/words" method="post">
+    <label for="word">Enter word here:</label>
+    <input id="word" type="text" name="word">
+    <button type="submit" class="btn btn-success">Upload</button>
+  </form>
+
+  <h2>Words</h2>
+  <div class="card">
+    <ul>
+      <% @words.each() do |word| %>
+      <li>
+        <a href="/words/<%= word.id %>"><%= word.word %></a>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
